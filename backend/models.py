@@ -1,4 +1,4 @@
-from app import db
+from extensions import db
 from datetime import datetime
 
 class Employee(db.Model):
@@ -63,3 +63,12 @@ class Task(db.Model):
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'completed_at': self.completed_at.isoformat() if self.completed_at else None,
         }
+
+
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(256), nullable=False)
+    role = db.Column(db.String(20), nullable=False)  # "admin" or "employee"
+    employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'), nullable=True)

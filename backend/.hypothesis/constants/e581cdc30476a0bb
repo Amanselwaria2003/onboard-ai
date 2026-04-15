@@ -1,0 +1,4 @@
+# file: D:\onboardai\backend\routes\auth.py
+# hypothesis_version: 6.151.13
+
+[200, 201, 400, 401, 409, '/login', '/register', 'POST', 'admin', 'auth', 'email', 'employee', 'employeeId', 'employee_id', 'error', 'invalid credentials', 'password', 'role', 'userId']

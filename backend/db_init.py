@@ -2,8 +2,10 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
 
-from app import create_app, db
-from models import Employee, Task
+from app import create_app
+from extensions import db
+from models import Employee, Task, User
+from werkzeug.security import generate_password_hash
 from datetime import date, datetime, timedelta
 import random
 
@@ -56,3 +58,24 @@ with app.app_context():
             db.session.add(task)
     db.session.commit()
     print("Done — seeded 5 employees x 5 tasks into onboard.db")
+
+    # Seed users
+    def seed_user(email, password, role, employee_id=None):
+        if not User.query.filter_by(email=email).first():
+            user = User(
+                email=email,
+                password_hash=generate_password_hash(password),
+                role=role,
+                employee_id=employee_id
+            )
+            db.session.add(user)
+
+    # 1 admin user
+    seed_user('admin@company.com', 'admin123', 'admin')
+
+    # 1 employee user per employee
+    for emp in Employee.query.all():
+        seed_user(emp.email, 'employee123', 'employee', emp.id)
+
+    db.session.commit()
+    print("Done — seeded admin user + 1 user per employee")

@@ -1,0 +1,4 @@
+# file: D:\onboardai\backend\routes\employees.py
+# hypothesis_version: 6.151.13
+
+[200, 201, 400, '%Y-%m-%d', '/api/employees', 'DELETE', 'GET', 'POST', 'deleted', 'department', 'email', 'employees', 'error', 'message', 'name', 'role', 'start_date']

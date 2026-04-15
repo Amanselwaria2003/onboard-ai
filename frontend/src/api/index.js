@@ -18,3 +18,7 @@ export const deleteTask = (id) => api.delete(`/api/tasks/${id}`).then(r => r.dat
 export const getMLStatus = (employeeId) =>
   api.get(`/api/ml/status/${employeeId}`).then(r => r.data)
 export const getAllMLStatuses = () => api.get('/api/ml/status/all').then(r => r.data)
+
+// Auth
+export const login = (data) => api.post('/api/auth/login', data).then(r => r.data)
+export const register = (data) => api.post('/api/auth/register', data).then(r => r.data)
